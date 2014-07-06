@@ -1,4 +1,5 @@
 "行番号表示
+set encoding=utf-8
 set nocompatible
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -32,8 +33,8 @@ inoremap <Down> <Nop>
 inoremap <Left> <Nop>
 inoremap <Right> <Nop>
 "vim256色表示のカラースキーム導入"
-NeoBundle 'wombat256.vim'
-:colorscheme wombat256mod
+NeoBundle 'tomasr/molokai'
+:colorscheme molokai
 "スニペット導入"
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neocomplcache'
@@ -48,8 +49,40 @@ NeoBundle 'cakebaker/scss-syntax.vim'
 "quickrun"
 NeoBundle 'thinca/vim-quickrun'
 "powerline"
-NeoBundle 'alpaca-tc/alpaca_powertabline'
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+ let g:Powerline_theme = 'molokai'
+ let g:Powerline_colorscheme = 'molokai'
+ let g:airline_theme = 'molokai'
+
+NeoBundle 'itchyny/lightline.vim'
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"⭤":""}',
+      \ }
+      \ }
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&readonly?"⭤":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
 
 "scssハイライト"
 au BufRead,BufNewFile *.scss set filetype=sass
