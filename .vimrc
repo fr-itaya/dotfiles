@@ -1,5 +1,3 @@
-"行番号表示
-set encoding=utf-8
 set nocompatible
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -11,6 +9,7 @@ NeoBundle 'scrooloose/nerdtree'
 filetype plugin indent on
 NeoBundleCheck
 autocmd VimEnter * NERDTree
+"行番号表示
 set number
 "インデントをSpace2つに
 set tabstop=2
@@ -19,8 +18,14 @@ set autoindent
 "オートインデント時のスペースを4つに
 set expandtab
 set shiftwidth=4
+"カーソルライン表示
+set cursorline
+"カーソルカラム表示
+set cursorcolumn
 "検索がファイル末尾まで行った場合、ファイル先頭から再び検索する
 set wrapscan
+"行末の空白除去
+autocmd BufWritePre * :%s/\s\+$//e
 "文字エンコーディングはUTF-8
 set encoding=UTF-8
 "カーソルキー無効
@@ -46,12 +51,9 @@ NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'mattn/livestyle-vim'
 NeoBundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 NeoBundle 'cakebaker/scss-syntax.vim'
+NeoBundle 'xsbeats/vim-blade'
 "quickrun"
 NeoBundle 'thinca/vim-quickrun'
-"powerline"
- let g:Powerline_theme = 'molokai'
- let g:Powerline_colorscheme = 'molokai'
- let g:airline_theme = 'molokai'
 
 NeoBundle 'itchyny/lightline.vim'
 let g:lightline = {
@@ -80,12 +82,13 @@ let g:lightline = {
       \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
       \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
 "scssハイライト"
 au BufRead,BufNewFile *.scss set filetype=sass
+au BufNewFile,BufRead *.blade.php set filetype=blade
 
 "Emmetvim"
 let g:user_emmet_mode = 'iv'
