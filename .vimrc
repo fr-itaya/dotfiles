@@ -55,6 +55,7 @@ NeoBundle 'xsbeats/vim-blade'
 "quickrun"
 NeoBundle 'thinca/vim-quickrun'
 
+NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'itchyny/lightline.vim'
 let g:lightline = {
       \ 'colorscheme': 'wombat',
@@ -86,6 +87,21 @@ let g:lightline = {
       \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
+"tmuxline"
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'c'    : ['#(whoami)', '#(uptime | cud -d " " -f 1,2,3)'],
+      \'win'  : ['#I', '#W'],
+      \'cwin' : ['#I', '#W', '#F'],
+      \'x'    : '#(date)',
+      \'y'    : ['%R', '%a', '%Y'],
+      \'z'    : '#H'}
+let g:tmuxline_separators = {
+    \ 'left' : '',
+    \ 'left_alt': '>',
+    \ 'right' : '',
+    \ 'right_alt' : '<',
+    \ 'space' : ' '}
 "scssハイライト"
 au BufRead,BufNewFile *.scss set filetype=sass
 au BufNewFile,BufRead *.blade.php set filetype=blade
