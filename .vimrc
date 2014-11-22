@@ -2,8 +2,9 @@ set nocompatible
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
+call neobundle#end()
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'scrooloose/nerdtree'
 filetype plugin indent on
@@ -11,6 +12,7 @@ NeoBundleCheck
 autocmd VimEnter * NERDTree
 "行番号表示
 set number
+syntax enable
 "インデントをSpace2つに
 set tabstop=2
 "オートインデント有効
@@ -39,7 +41,7 @@ inoremap <Left> <Nop>
 inoremap <Right> <Nop>
 "vim256色表示のカラースキーム導入"
 NeoBundle 'tomasr/molokai'
-:colorscheme molokai
+colorscheme molokai
 "スニペット導入"
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neocomplcache'
@@ -168,3 +170,4 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
+noremap <CR> o<ESC>
